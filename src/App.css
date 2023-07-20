@@ -1,55 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@200&family=Montserrat:wght@100&family=Roboto:wght@500&family=Ubuntu&display=swap');
 
-body {
-  font-family: Arial, sans-serif;
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 700;
+}
+
+body,
+/* to remove any default margin/padding from the body */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6, 
+p,
+/*to remove any default margin/padding from heading and paragraph tags */
+ul,
+ol {
+  /* remove any default margin/padding from list elements */
   margin: 0;
   padding: 0;
+}
+body{
+  background-color: #dcab22;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0;
+  /* Set margin-top to 0 to remove any space at the top of the page */
+  padding-top: 0;
+  /* Set padding-top to 0 to remove any space at the top of the page */
 }
 
 .header {
   width: 100%;
-  background-color: #007bff;
-  padding: 10px;
+  background-color: #06799c;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add a slight bottom shadow */
+  margin: 0;
+  margin-bottom: 1.7rem;
   display: flex;
   justify-content: center;
+  /* Center the header content horizontally */
+  align-items: center;
+  /* Center the header content vertically */
+}
+
+.header-container {
+  display: flex;
   align-items: center;
 }
+
+.header img {
+  margin-left: 2rem;
+  /* Set the left margin to 2rem */
+  margin-right: 1rem;
+  /* Set the right margin to separate the logo from the search bar */
+  width: 50px;
+  height: auto;
+ 
+}
+
+.search-bar{
+  width: 20rem;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 5px;
+  border: #023f52 2px solid;
+}
+
 
 .search-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  flex: 1;
+  /*make the search bar take up available space */
+  justify-content: center;
+  /* Center the search bar horizontally */
 }
 
-.search-container input {
-  margin-right: 10px;
-  padding: 5px;
+.search-container button:hover,.form-container button:hover, .show-all-btn:hover {
+  background-color: #039bc9;
+  color: #fff;
 }
 
-.search-container button {
-  padding: 5px 10px;
+.search-btn {
+  border: 2px solid #01232d;
   background-color: #fff;
-  color: #007bff;
-  border: 1px solid #007bff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #045872;
+  color: white;
   cursor: pointer;
 }
 
-.search-container button:hover {
-  background-color: #007bff;
-  color: #fff;
+.app-title{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+ font-weight: 900;
+ font-family: 'Ubuntu', sans-serif;
+
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  background-color: #d79f06;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #b48503;
 }
 
 .form-container input {
@@ -58,13 +128,19 @@ body {
   width: 200px;
 }
 
-.form-container button {
-  padding: 5px 10px;
-  background-color: #007bff;
+.form-container button, .show-all-btn {
+  background-color: #045872;
   color: white;
-  border: none;
+  border: 2px solid #01232d;
   cursor: pointer;
+  width: 10rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
+.show-all-btn{
+  margin-bottom: 1rem;
+}
+
 
 .product-list {
   display: flex;
@@ -76,26 +152,90 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 300px;
+  width: 22rem;
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid #b48503;
+  background-color: #d79f06;
 }
 
 .product-item p {
-  margin: 5px;
+  margin: 6px;
 }
 
 .product-item button {
-  margin-top: 5px;
+  margin-top: 8px;
   padding: 5px 10px;
-  background-color: #dc3545;
+  background-color: #045872;
+  border: 2px solid #01232d;
   color: white;
-  border: none;
   cursor: pointer;
 }
+.product-item button:hover {
+  background-color: #039bc9;
+  color: #fff;
+}
 
-/* Add responsive styles for small screens */
+
+button {
+  border-radius: 5rem;
+}
+
+.add-title{
+  margin-bottom: 1rem;
+}
+.show-title{
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+
+input{
+  border-radius: 5px;
+  border: #023f52 2px solid;
+  padding: 5px;
+}
+
+
+.page-body {
+  display: flex;
+}
+
+.left-container {
+  width: 30%;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+  background-color: #045872;
+  border-radius: 5px;
+  padding-right: 2rem;
+  padding-left: 2rem;
+
+}
+.left-container img{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.right-container {
+  width: 70%;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+
+/* more responsivity*/
 @media (max-width: 600px) {
+
   .form-container input,
   .form-container button,
   .search-container input,

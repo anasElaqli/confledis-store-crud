@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import deliveryIcon from './shopping-delivery.svg';
+import cartIcon from './shopping-cart.svg';
+
 
 const App = () => {
   const [productName, setProductName] = useState('');
@@ -11,24 +14,24 @@ const App = () => {
   const [editingProductId, setEditingProductId] = useState(null);
   const [originalProducts, setOriginalProducts] = useState([]); // New state for original products
 
- // State variables for editing inputs
- const [editedName, setEditedName] = useState('');
- const [editedUnitPrice, setEditedUnitPrice] = useState('');
- const [editedQuantity, setEditedQuantity] = useState('');
+  // State variables for editing inputs
+  const [editedName, setEditedName] = useState('');
+  const [editedUnitPrice, setEditedUnitPrice] = useState('');
+  const [editedQuantity, setEditedQuantity] = useState('');
 
- useEffect(() => {
-  fetchProducts();
-}, []);
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-const fetchProducts = async () => {
-  try {
-    const response = await axios.get('http://localhost:5000/api/products');
-    setProducts(response.data);
-    setOriginalProducts(response.data); // Store original products data
-  } catch (error) {
-    console.error('Error fetching products:', error);
-  }
-};
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/products');
+      setProducts(response.data);
+      setOriginalProducts(response.data); // Store original products data
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   const addProduct = async () => {
     try {
@@ -69,7 +72,7 @@ const fetchProducts = async () => {
     }
   };
 
- 
+
   const handleSearch = () => {
     if (!searchTerm.trim()) {
       // If the search term is empty, reset products to the original data
@@ -97,83 +100,97 @@ const fetchProducts = async () => {
   return (
     <div className="app">
       <header className="header">
+        <img src={require('./shop.svg').default} alt="Logo" width="40" height="40" />
         <div className="search-container">
           <input
+            className="search-bar"
             type="text"
-            placeholder="Search Product"
+            placeholder="Rechercher un produit"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={handleSearchKeyPress} // Trigger search on Enter key press
           />
-          <button onClick={handleSearch}>Search</button>
+          <button onClick={handleSearch} className='search-btn'>Rechercher</button>
         </div>
       </header>
-      <div className="form-container">
-        <h2>Add a New Product</h2>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-        />
-        <input
-          type="number" // Use type="number" for numeric input
-          placeholder="Unit Price in Euro"
-          value={unitPrice}
-          onChange={(e) => setUnitPrice(e.target.value)}
-        />
-        <input
-          type="number" // Use type="number" for numeric input
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <button onClick={addProduct}>Add Product</button>
-      </div>
-      <div className="search-container">
-        <button onClick={handleShowAll}>Show All</button>
-      </div>
-      <div className="product-list">
-      {products.length === 0 && <p>No products added yet</p>}
-        {products.map((product) => (
-          <div key={product.id} className="product-item">
-            {editingProductId === product.id ? (
-              <>
-                {/* Use type="number" for edited inputs */}
-                <input
-                  type="text"
-                  value={editedName}
-                  onChange={(e) => setEditedName(e.target.value)}
-                />
-                <input
-                  type="number" // Use type="number" for numeric input
-                  value={editedUnitPrice}
-                  onChange={(e) => setEditedUnitPrice(e.target.value)}
-                />
-                <input
-                  type="number" // Use type="number" for numeric input
-                  value={editedQuantity}
-                  onChange={(e) => setEditedQuantity(e.target.value)}
-                />
-                <button onClick={() => updateProduct(product.id)}>Save</button>
-              </>
-            ) : (
-              <>
-                <p>Name: {product.name}</p>
-                <p>Unit Price: {product.unitPrice} Euro</p>
-                <p>Quantity: {product.quantity}</p>
-                <button onClick={() => {
-                  // Initialize editing inputs with the current product data
-                  setEditedName(product.name);
-                  setEditedUnitPrice(product.unitPrice);
-                  setEditedQuantity(product.quantity);
-                  setEditingProductId(product.id);
-                }}>Edit</button>
-              </>
-            )}
-            <button onClick={() => deleteProduct(product.id)}>Delete</button>
+      <h1 className='app-title'>Bienvenue sur Confledis Store!</h1>
+      <div className="page-body">
+        <div className="left-container">
+            {/* The large image */}
+            <img src={deliveryIcon} alt="Delivery Icon" width="390" height="auto" />
+            <img src={cartIcon} alt="Cart Icon" width="390" height="auto" />
+        </div>
+        <div className="right-container">
+          <div className="form-container">
+            <h2 className='add-title'>Ajouter un nouveau produit</h2>
+            <input
+              type="text"
+              placeholder="Nom du produit"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
+            />
+            <input
+              type="number" // Use type="number" for numeric input
+              placeholder="Prix unitaire (en euros)"
+              value={unitPrice}
+              onChange={(e) => setUnitPrice(e.target.value)}
+            />
+            <input
+              type="number" // Use type="number" for numeric input
+              placeholder="Quantité"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+            <button onClick={addProduct}>Ajouter un produit</button>
           </div>
-        ))}
+          <h2 className='show-title'>Liste de produits</h2>
+          <div className="search-container">
+            <button className="show-all-btn" onClick={handleShowAll} >Afficher tout</button>
+          </div>
+          <div className="product-list">
+            {products.length === 0 && <p>Il n'y a pas de produits jusqu'à présent..</p>}
+            {products.map((product) => (
+              <div key={product.id} className="product-item">
+                {editingProductId === product.id ? (
+                  <>
+                    {/* Use type="number" for edited inputs */}
+                    <input
+                      type="text"
+                      value={editedName}
+                      onChange={(e) => setEditedName(e.target.value)}
+                    />
+                    <input
+                      type="number" // Use type="number" for numeric input
+                      value={editedUnitPrice}
+                      onChange={(e) => setEditedUnitPrice(e.target.value)}
+                    />
+                    <input
+                      type="number" // Use type="number" for numeric input
+                      value={editedQuantity}
+                      onChange={(e) => setEditedQuantity(e.target.value)}
+                    />
+                    <button onClick={() => updateProduct(product.id)}>Enregistrer</button>
+                  </>
+                ) : (
+                  <>
+                    <p>Nom : {product.name}</p>
+                    <p>Prix unitaire : {product.unitPrice} €</p>
+                    <p>Quantité : {product.quantity}</p>
+                    <button className="edit-btn"
+                      onClick={() => {
+                        // Initialize editing inputs with the current product data
+                        setEditedName(product.name);
+                        setEditedUnitPrice(product.unitPrice);
+                        setEditedQuantity(product.quantity);
+                        setEditingProductId(product.id);
+                      }}>Modifier</button>
+                  </>
+                )}
+                <button className="delete-btn" onClick={() => deleteProduct(product.id)}>Supprimer</button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
