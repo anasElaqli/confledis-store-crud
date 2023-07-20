@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 
 let products = [];
 
-// CRUD operations for products
+// Opérations CRUD pour les produits
 app.post('/api/products', (req, res) => {
   const product = req.body;
   product.id = new Date().getTime().toString();

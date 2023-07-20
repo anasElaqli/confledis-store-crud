@@ -12,7 +12,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [editingProductId, setEditingProductId] = useState(null);
-  const [originalProducts, setOriginalProducts] = useState([]); // New state for original products
+  const [originalProducts, setOriginalProducts] = useState([]);
 
   // State variables for editing inputs
   const [editedName, setEditedName] = useState('');
@@ -27,7 +27,7 @@ const App = () => {
     try {
       const response = await axios.get('http://localhost:5000/api/products');
       setProducts(response.data);
-      setOriginalProducts(response.data); // Store original products data
+      setOriginalProducts(response.data); // Stocker les données originales des produits
     } catch (error) {
       console.error('Error fetching products:', error);
     }
@@ -75,10 +75,10 @@ const App = () => {
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
-      // If the search term is empty, reset products to the original data
+      // Si la recherche est vide, réinitialiser les produits aux données d'origine
       setProducts(originalProducts);
     } else {
-      // Otherwise, filter products based on the search term
+      // Sinon, filtrer les produits en fonction du terme de recherche
       const filteredProducts = originalProducts.filter((p) =>
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
@@ -87,8 +87,8 @@ const App = () => {
   };
 
   const handleShowAll = () => {
-    fetchProducts(); // Re-fetch all products
-    setSearchTerm(''); // Clear the search term
+    fetchProducts(); // Re-fetch Tous les produits
+    setSearchTerm(''); // Effacer le terme de recherche
   };
 
   const handleSearchKeyPress = (e) => {
@@ -108,7 +108,7 @@ const App = () => {
             placeholder="Rechercher un produit"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={handleSearchKeyPress} // Trigger search on Enter key press
+            onKeyPress={handleSearchKeyPress} // Rechercher en cliquant sur "Enter"
           />
           <button onClick={handleSearch} className='search-btn'>Rechercher</button>
         </div>
@@ -116,7 +116,7 @@ const App = () => {
       <h1 className='app-title'>Bienvenue sur Confledis Store!</h1>
       <div className="page-body">
         <div className="left-container">
-            {/* The large image */}
+            {/* Les images sur le côté */}
             <img src={deliveryIcon} alt="Delivery Icon" width="390" height="auto" />
             <img src={cartIcon} alt="Cart Icon" width="390" height="auto" />
         </div>
@@ -130,13 +130,13 @@ const App = () => {
               onChange={(e) => setProductName(e.target.value)}
             />
             <input
-              type="number" // Use type="number" for numeric input
+              type="number" // Type = "number" pour une entrée numérique
               placeholder="Prix unitaire (en euros)"
               value={unitPrice}
               onChange={(e) => setUnitPrice(e.target.value)}
             />
             <input
-              type="number" // Use type="number" for numeric input
+              type="number" 
               placeholder="Quantité"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
@@ -148,24 +148,23 @@ const App = () => {
             <button className="show-all-btn" onClick={handleShowAll} >Afficher tout</button>
           </div>
           <div className="product-list">
-            {products.length === 0 && <p>Il n'y a pas de produits jusqu'à présent..</p>}
+            {products.length === 0 && <p>Il n'y a pas de produits jusqu'à présent ..</p>}
             {products.map((product) => (
               <div key={product.id} className="product-item">
                 {editingProductId === product.id ? (
-                  <>
-                    {/* Use type="number" for edited inputs */}
+                  <>  
                     <input
                       type="text"
                       value={editedName}
                       onChange={(e) => setEditedName(e.target.value)}
                     />
                     <input
-                      type="number" // Use type="number" for numeric input
+                      type="number" 
                       value={editedUnitPrice}
                       onChange={(e) => setEditedUnitPrice(e.target.value)}
                     />
                     <input
-                      type="number" // Use type="number" for numeric input
+                      type="number" 
                       value={editedQuantity}
                       onChange={(e) => setEditedQuantity(e.target.value)}
                     />
@@ -178,7 +177,7 @@ const App = () => {
                     <p>Quantité : {product.quantity}</p>
                     <button className="edit-btn"
                       onClick={() => {
-                        // Initialize editing inputs with the current product data
+                        // Initialise les entrées de modification avec les données actuel du produit 
                         setEditedName(product.name);
                         setEditedUnitPrice(product.unitPrice);
                         setEditedQuantity(product.quantity);

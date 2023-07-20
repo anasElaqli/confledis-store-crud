@@ -9,7 +9,7 @@
 }
 
 body,
-/* to remove any default margin/padding from the body */
+/* Pour supprimer les 'margin'/'padding' par défaut */
 h1,
 h2,
 h3,
@@ -17,10 +17,8 @@ h4,
 h5,
 h6, 
 p,
-/*to remove any default margin/padding from heading and paragraph tags */
 ul,
 ol {
-  /* remove any default margin/padding from list elements */
   margin: 0;
   padding: 0;
 }
@@ -33,9 +31,7 @@ body{
   flex-direction: column;
   align-items: center;
   margin-top: 0;
-  /* Set margin-top to 0 to remove any space at the top of the page */
   padding-top: 0;
-  /* Set padding-top to 0 to remove any space at the top of the page */
 }
 
 .header {
@@ -43,15 +39,13 @@ body{
   background-color: #06799c;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  /* Ajoute une légère ombre en bas */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Add a slight bottom shadow */
   margin: 0;
   margin-bottom: 1.7rem;
   display: flex;
   justify-content: center;
-  /* Center the header content horizontally */
   align-items: center;
-  /* Center the header content vertically */
 }
 
 .header-container {
@@ -61,9 +55,7 @@ body{
 
 .header img {
   margin-left: 2rem;
-  /* Set the left margin to 2rem */
   margin-right: 1rem;
-  /* Set the right margin to separate the logo from the search bar */
   width: 50px;
   height: auto;
  
@@ -82,9 +74,7 @@ body{
   display: flex;
   align-items: center;
   flex: 1;
-  /*make the search bar take up available space */
   justify-content: center;
-  /* Center the search bar horizontally */
 }
 
 .search-container button:hover,.form-container button:hover, .show-all-btn:hover {
@@ -232,8 +222,7 @@ input{
 }
 
 
-
-/* more responsivity*/
+/* Plus de réactivité */
 @media (max-width: 600px) {
 
   .form-container input,
