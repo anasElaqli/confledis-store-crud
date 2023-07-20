@@ -1,62 +1,106 @@
-/* App.css */
-.App {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.form {
+.app {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.form input {
-  padding: 8px;
-  font-size: 16px;
+.header {
+  width: 100%;
+  background-color: #007bff;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.form button {
-  padding: 8px 16px;
-  font-size: 16px;
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container input {
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.search-container button {
+  padding: 5px 10px;
+  background-color: #fff;
+  color: #007bff;
+  border: 1px solid #007bff;
+  cursor: pointer;
+}
+
+.search-container button:hover {
   background-color: #007bff;
   color: #fff;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-container input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 200px;
+}
+
+.form-container button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
   border: none;
   cursor: pointer;
 }
 
-.form button:hover {
-  background-color: #0056b3;
-}
-
 .product-list {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.product {
-  border: 1px solid #ccc;
-  padding: 10px;
+.product-item {
   margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
-.product p {
-  margin: 5px 0;
+.product-item p {
+  margin: 5px;
 }
 
-.product button {
-  margin-right: 5px;
+.product-item button {
+  margin-top: 5px;
+  padding: 5px 10px;
   background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.product button:hover {
-  background-color: #c82333;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Add responsive styles for small screens */
+@media (max-width: 600px) {
+  .form-container input,
+  .form-container button,
+  .search-container input,
+  .search-container button,
+  .product-item {
+    width: 100%;
   }
 }
